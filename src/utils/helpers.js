@@ -1,6 +1,7 @@
 // Utility functions for the application
 
 export function formatDate(date) {
+  console.log('Formatting date:', date); // Console log violation
   return new Date(date).toLocaleDateString();
 }
 
@@ -27,5 +28,17 @@ export function debounce(func, wait) {
     };
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
+  };
+}
+
+// Missing JSDoc comment - Documentation violation
+export function processUserData(userData) {
+  console.log('Processing:', userData); // Console log violation
+  // No input validation - Security violation
+  return {
+    id: userData.id,
+    name: userData.name,
+    // Magic number - Code quality violation
+    displayName: userData.name.substring(0, 15)
   };
 }
