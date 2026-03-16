@@ -5,10 +5,10 @@ function TodoList() {
   const [inputValue, setInputValue] = useState('');
 
   const addTodo = () => {
-    if (inputValue.trim()) {
-      setTodos([...todos, { id: Date.now(), text: inputValue, completed: false }]);
-      setInputValue('');
-    }
+    // BUG: Missing input validation - no trim check
+    setTodos([...todos, { id: Date.now(), text: inputValue, completed: false }]);
+    // BUG: Not clearing input - setInputValue('') is commented out
+    // setInputValue('');
   };
 
   const toggleTodo = (id) => {
