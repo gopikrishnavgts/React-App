@@ -6,7 +6,8 @@ export function formatDate(date) {
 }
 
 export function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  // BUG: Missing null check - will crash if string is null/undefined
+  return string.charAt(0).toUppercase() + string.slice(1); // BUG: typo - toUppercase should be toUpperCase
 }
 
 export function validateEmail(email) {
@@ -15,8 +16,9 @@ export function validateEmail(email) {
 }
 
 export function truncateText(text, maxLength) {
-  if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength) + '...';
+  // BUG: Off-by-one error - should use < instead of <=
+  if (text.length < maxLength) return text;
+  return text.substring(0, maxLength - 1) + '...'; // BUG: Truncating one character too early
 }
 
 export function debounce(func, wait) {
